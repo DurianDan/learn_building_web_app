@@ -17,4 +17,5 @@ const name = "app.js"
 
 // check back available Objects of this module (file)
 // console.log(module)
+// export multiple objects at a time
 module.exports = {dance, name}
