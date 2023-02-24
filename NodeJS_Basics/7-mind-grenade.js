@@ -1,8 +1,8 @@
-// get the public objects from 4-names.js 
-const names = require("./4-names");
-const sayHi = require("./5-utils");
-const flavor = require("./6-alternatives-flavor")
+const num1 = 5
+const num2 = 10
 
-sayHi(", This code is imported from another module")
-sayHi(`${names.dance}` + " <= this also too")
-sayHi(flavor.first_var)
+function addValues(){
+    console.log(`the sum is ${num1 + num2}`)
+}
+
+addValues()
