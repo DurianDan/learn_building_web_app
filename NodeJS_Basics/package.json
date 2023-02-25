@@ -1,0 +1,17 @@
+{
+  "name": "nodejs_basics",
+  "version": "1.0.0",
+  "description": "[tutorial link](https://www.youtube.com/watch?v=Oe421EPjeBE&t=14s)",
+  "main": "1-intro.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "jquerry": "^0.0.1-security",
+    "lodash": "^4.17.21"
+  }
+}
