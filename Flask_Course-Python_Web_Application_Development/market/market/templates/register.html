@@ -1,0 +1,37 @@
+{%extends "base.html"%}
+
+{% block title %}
+Register Page
+{% endblock %}
+
+{% block content %}
+<body class="text-center">
+    <div class="container">
+        <form method="POST" class="form-register" style="color:white">
+            <!--Below line is for protection from CSRF by generating tokens...
+            ..., for furthur understanding, view register_page() in the routes.py-->
+            {{ form.hidden_tag() }}
+            <img class="mb-4" src="https://assets.leetcode.com/users/avatars/avatar_1646733981.png" alt="">
+            <h1 class="h3 mb-3 font-weight-normal">
+                Please enter ur mom info, ur mom so hot that inheritance erases ur masculinity (that means ur gay) duh
+            </h1>
+            <br>
+            {{form.username.label()}}
+            {{form.username(class="form-control", placeholder="User Name")}}
+
+            {{form.email_address.label()}}
+            {{form.email_address(class="form-control", placeholder="Email Address")}}
+
+            {{form.password1.label()}}
+            {{form.password1(class="form-control", placeholder="Password")}}
+
+            {{form.password2.label()}}
+            {{form.password2(class="form-control", placeholder="Password again")}}
+
+            <br>
+
+            {{ form.submit(class="btn btn-block btn-primary")}}
+        </form>
+    </div>
+</body>
+{% endblock %}
