@@ -1,0 +1,8 @@
+Synchronous result:
+this is the first text file
+this is second text fileSynchronous result:
+this is the first text file
+this is second text file
+Synchronous result:
+this is the first text file
+this is second text file
