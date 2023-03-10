@@ -39,17 +39,19 @@ func helloHandler(w http.ResponseWriter, r *http.Request){
 	fmt.Fprintf(w,"Hello! This is an app made by Huy")
 }
 
-func main(){
-	fileServer := http.FileServer(http.Dir("./static"))
-	
-	http.Handle("/",fileServer) 
+func main(){	
+	http.Handle(
+		"/",
+		http.FileServer(http.Dir("./static")),
+		// tell http where to find all the backend files 
+	) 
 	// handle the highest route of the website
 	// using a single file: index.html
 	http.HandleFunc("/form", formHandler)
 	// handle the route /form with a custom function
 	http.HandleFunc("/hello", helloHandler)
 	// handle a custom function
-
+	
 	fmt.Println("Start server at port 8080")
 	if err := http.ListenAndServe(":8080", nil); err!=nil{
 		// create a server
