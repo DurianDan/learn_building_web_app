@@ -8,7 +8,7 @@ import (
 
 
 type Movie struct{
-	ID string `json:ID`
+	ID string `json:"ID"`
 }
 
 
