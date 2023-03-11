@@ -12,9 +12,9 @@ import (
 
 type Movie struct {
 	ID string `json:"ID"` // json:"ID" is struct tag ??? later
-	Isbn string `json: "isbn"` // is like barcode for films
+	Isbn string `json:"isbn"` // is like barcode for films
 	Title string `json:"title"`
-	Director *Director `json:"director`
+	Director *Director `json:"director"`
 }
 
 type Director struct{
@@ -67,41 +67,35 @@ func getMovie(w http.ResponseWriter, r *http.Request){
 
 func createMovie(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Content-Type","application/json")
-	params := mux.Vars(r)
-	var new_movie = Movie{
-		params["ID"],
-		params["isbn"],
-		params["title"],
-		&Director{
-			params["firstname"],
-			params["lasstname"],
-		},
-	}
+	var new_movie Movie 
+	json.NewDecoder(r.Body).Decode(&new_movie)
+
+	new_movie.ID = strconv.Itoa(rand.Intn(10000000000000))
 	movies = append(movies, new_movie)
 	json.NewEncoder(w).Encode(new_movie)
 }
 
-func updateMovies(w http.ResponseWriter, r *http.Request){
+func updateMovie( w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Content-Type","application/json")
-	params := mux.Vars(r)
-	var update_idx int
+	var update_movie Movie 
+	request_update_idx := mux.Vars(r)["id"]
+
+	// what is the  difference to params := mux.Vars(r) ?
+	// mux.Vars(r) get the {id} at the end of the URL 
+	// the below line of code get the Body of the request as a JSON
+	json.NewDecoder(r.Body).Decode(&update_movie)
+	update_movie.ID = request_update_idx
+
 	for idx, item := range movies {
-		if item.ID == params["ID"]{
-			update_idx = idx
-			movies[idx] = Movie{
-				params["ID"],
-				params["isbn"],
-				params["title"],
-				&Director{
-					params["firstname"],
-					params["lastname"],
-				},
-			}
+		if item.ID == request_update_idx {
+			movies[idx] = update_movie
+			json.NewEncoder(w).Encode(movies[idx])
 			break
 		}
 	}
-	json.NewEncoder(w).Encode(movies[update_idx])
+
 }
+
 
 func main() {
 	r:=mux.NewRouter()
@@ -117,9 +111,9 @@ func main() {
 	r.HandleFunc("/movies", getMovies).Methods("GET")
 	// when client request (using GET method) to the route /movies...
 	// execute the function getMovies(w mux.ResponseWriter, r *mux.Requests)
-	r.HandleFunc("/movies/id", getMovie).Methods("GET")
+	r.HandleFunc("/movies/{id}", getMovie).Methods("GET")
 	r.HandleFunc("/movies", createMovie).Methods("POST")
-	r.HandleFunc("/movies/{id}", updateMovies).Methods("PUT")
+	r.HandleFunc("/movies/{id}", updateMovie).Methods("PUT")
 	r.HandleFunc("/movies/{id}",deleteMovie).Methods("DELETE")
 
 	fmt.Println("Starting server at the port 8000: localhost:8000")
