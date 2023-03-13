@@ -17,7 +17,7 @@ func Connect(){
 	d, err := gorm.Open( // The DB will return back the error to the var err, and value to var d
 		"mysql", // choosing the find of SQL database, (can also be PostGre, SQLite)
 		"root:mysql/simplerest?charset=utf8&parseTime=True&loc=Local", 
-		// {user-name}:{password}/{table-name}?{MySQL specification}
+		// {user-name}:{password}/{database}?{MySQL specification}
 	)
 	if err!= nil {
 		panic(err) // check if the err has been returned (not nil)
