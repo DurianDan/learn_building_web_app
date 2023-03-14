@@ -12,11 +12,12 @@ var (
 ) // use brackets for creating multiple variables
 // db is a pointer
 
+
 func Connect(){
 	// this function help the app to connect to the database 
 	d, err := gorm.Open( // The DB will return back the error to the var err, and value to var d
 		"mysql", // choosing the find of SQL database, (can also be PostGre, SQLite)
-		"root:mysql/simplerest?charset=utf8&parseTime=True&loc=Local", 
+		"root:MySQL_000/simplerest?charset=utf8&parseTime=True&loc=Local", 
 		// {user-name}:{password}/{database}?{MySQL specification}
 	)
 	if err!= nil {
@@ -29,3 +30,4 @@ func GetDB() *gorm.DB{
 	// return the db from the database
 	return db // to talk to the database 
 }
+
