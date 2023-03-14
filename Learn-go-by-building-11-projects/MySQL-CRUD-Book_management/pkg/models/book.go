@@ -8,9 +8,9 @@ import (
 var db *gorm.DB
 
 type Book struct{
-	gorm.model
+	gorm.Model
 	Name string `gorm:""json:"name"` 
-	// contains 2 tags, empty tag gorm, and json tag name
+	// contains 2  tags, empty tag gorm, and json tag name
 	// gorm tag tell the database how to handle field Name
 	// empty gorm tag means the DB will upload the data to column with the same name: "Name" 
 	Author string `json:"author`

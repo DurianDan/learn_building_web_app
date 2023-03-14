@@ -1,4 +1,4 @@
-package congfig 
+package config 
 
 import (
 	"github.com/jinzhu/gorm"
@@ -17,7 +17,7 @@ func Connect(){
 	// this function help the app to connect to the database 
 	d, err := gorm.Open( // The DB will return back the error to the var err, and value to var d
 		"mysql", // choosing the find of SQL database, (can also be PostGre, SQLite)
-		"root:MySQL_000/simplerest?charset=utf8&parseTime=True&loc=Local", 
+		"root:mysql@tcp(localhost)/simplerest?charset=utf8&parseTime=True&loc=Local", 
 		// {user-name}:{password}/{database}?{MySQL specification}
 	)
 	if err!= nil {

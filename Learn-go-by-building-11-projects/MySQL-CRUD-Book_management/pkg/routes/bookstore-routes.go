@@ -5,7 +5,7 @@ import (
 	"github.com/DurianDan/go-bookstore/pkg/controllers"
 )
 
-func RegisterBookStore(router *mux.Router){
+func RegisterBookStoreRoutes(router *mux.Router){
 	// to initiate all routes automatically
 	router.HandleFunc("/book/", controllers.CreateBook).Methods("POST")
 	// the book route will be handle by the CreateBook function from the folder controllers
