@@ -1,20 +1,22 @@
-package test
+package main
 
 import (
 	"fmt"
-	"net/http"
-	"github.com/gorilla/mux"
 )
 
 
-type Movie struct{
-	ID string `json:"ID"`
+type Person struct {
+	name string
+	age int16
+	school string
 }
 
+type welcome interface {
+	greet() string
+	giveDirection() string 
+	canDrink() bool 
+}
 
-func main(){
-	r := mux.NewRouter()
-	r.HandleFunc("/movies/{id}", updateMovies).Method("PUT")
-
-	http.ListenAndServe(":8000",r)
+func (p Person) welcome(){
+	
 }
